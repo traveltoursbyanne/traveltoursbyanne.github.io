@@ -975,7 +975,7 @@ function setupReviewCarousel(reviews) {
 
     timer = setInterval(() => {
       show((active + 1) % reviews.length);
-    }, 5500);
+    }, 3000);
   }
 
   reviews.forEach((review,i) => {
@@ -1384,6 +1384,73 @@ loadAbout();
     transition: none;
   }
 }
+  
+/* FIX REVIEW CAROUSEL NAVIGATION ALIGNMENT */
+
+.review-navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 48px;
+  margin: 24px auto 0;
+}
+
+.review-arrow-new {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: 25px;
+}
+
+.review-dots-new {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  margin: 0;
+  padding: 0;
+}
+
+.review-dot-new {
+  flex: 0 0 auto;
+  display: block;
+  height: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: middle;
+}
+
+.review-dot-new.active {
+  height: 10px;
+}
+
+@media (max-width: 700px) {
+  .review-navigation {
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .review-arrow-new {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .review-dots-new {
+    min-height: 38px;
+  }
+}
 </style>
 
 <script>
@@ -1570,7 +1637,7 @@ loadAbout();
 
       timer = setInterval(() => {
         showReview(active + 1);
-      }, 5500);
+      }, 3000);
     }
 
     function move(index) {
