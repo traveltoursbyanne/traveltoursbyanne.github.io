@@ -1361,6 +1361,79 @@ loadAbout();
     transition: none;
   }
 }
+/* FULL-WIDTH CINEMATIC REVIEWS — DESKTOP */
+
+#memories {
+  padding: 65px 0 0;
+  background: #faf7f2;
+}
+
+#memories > .section-heading {
+  padding: 0 6%;
+  margin-bottom: 45px;
+}
+
+.review-showcase {
+  width: 100%;
+  max-width: none;
+  min-height: 90vh;
+  border-radius: 0;
+  padding: 90px 7%;
+}
+
+.review-scenery {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.review-glass-card {
+  max-width: 760px;
+  padding: 40px 48px;
+  background: rgba(8, 29, 45, 0.48);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.review-showcase::before {
+  background: rgba(5,27,43,0.38);
+}
+
+/* KEEP THE MOBILE DESIGN COMFORTABLE */
+
+@media (max-width: 700px) {
+  #memories {
+    padding: 50px 0 0;
+  }
+
+  #memories > .section-heading {
+    padding: 0 6%;
+    margin-bottom: 30px;
+  }
+
+  .review-showcase {
+    min-height: 70vh;
+    padding: 65px 18px 75px;
+    border-radius: 0;
+  }
+
+  .review-scenery {
+    background-attachment: scroll;
+    background-position: center;
+  }
+
+  .review-glass-card {
+    padding: 26px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-scenery {
+    background-attachment: scroll;
+  }
+}
 </style>
 
 <script>
