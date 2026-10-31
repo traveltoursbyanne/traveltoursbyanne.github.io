@@ -1,305 +1,730 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Travel and Tours by Anne — explore beautiful destinations and inquire about your next getaway.">
-<title>Travel and Tours by Anne | Explore More</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Travel and Tours by Anne — beautiful destinations, private tours and thoughtfully planned adventures.">
+<title>Travel and Tours by Anne | Your Journey, Beautifully Planned</title>
+
 <style>
-:root{--navy:#102c43;--gold:#d4a85f;--cream:#f8f6f0}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--navy);line-height:1.6}header{display:flex;justify-content:space-between;align-items:center;padding:18px 7%;background:white;gap:16px}header strong{font-size:1.15rem}nav a{margin-left:20px;color:var(--navy);text-decoration:none;font-weight:600}nav a:hover{color:#9a6a2e}.hero{min-height:520px;background:linear-gradient(90deg,rgba(5,27,43,.83),rgba(5,27,43,.18)),url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1800&q=85') center/cover;display:flex;align-items:center;color:white;padding:65px 8%}.hero-content{max-width:670px}.eyebrow{text-transform:uppercase;letter-spacing:3px;color:#f2d39c;font-size:.85rem;font-weight:bold}h1{font-size:clamp(2.5rem,6vw,4.8rem);line-height:1.1;margin:15px 0}h2{font-size:2rem;margin:0 0 14px}.hero p{font-size:1.15rem}.btn{display:inline-block;background:var(--gold);color:#172e40;padding:13px 24px;border-radius:5px;text-decoration:none;font-weight:bold;margin-top:18px}.btn:hover{background:#edc583}section{padding:72px 8%}.intro{text-align:center;max-width:750px;margin:auto}.sub{color:#66727b}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px}.card{border:1px solid #e6e6e6;border-radius:12px;overflow:hidden;background:white;box-shadow:0 8px 25px rgba(0,0,0,.05)}.card img{width:100%;height:230px;object-fit:cover;display:block}.card-body{padding:22px}.card h3{margin:0 0 7px}.card p{margin:0;color:#596875}.light{background:var(--cream)}.center{text-align:center}.about{max-width:850px;margin:auto;text-align:center}.contact{background:var(--navy);color:white;text-align:center}.contact p{max-width:620px;margin:0 auto}footer{padding:20px;text-align:center;background:#091f31;color:#d6e1e8;font-size:.9rem}@media(max-width:700px){header{flex-direction:column;text-align:center}nav a{margin:0 9px;font-size:.9rem}.hero{min-height:470px}.cards{grid-template-columns:1fr}section{padding:55px 6%}}
+:root {
+  --navy:#102c43;
+  --gold:#d4a85f;
+  --cream:#faf7f2;
+  --pink:#e8a9bc;
+  --teal:#87bdb1;
+  --ink:#344957;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {margin:0;font-family:Arial,sans-serif;color:var(--navy);line-height:1.65}
+button,input,select,textarea {font:inherit}
+button,a,input,select,textarea {accent-color:var(--navy)}
+a {color:inherit}
+[hidden] {display:none!important}
+header {
+  background:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 6%;
+  gap:20px;
+  position:relative;
+  z-index:5;
+}
+.brand {font-size:1.15rem;font-weight:700;text-decoration:none}
+nav {display:flex;flex-wrap:wrap;gap:18px}
+nav a {text-decoration:none;font-weight:600;font-size:.9rem}
+nav a:hover {color:#93682f}
+h1,h2,h3 {line-height:1.2}
+h1 {font-size:clamp(2.7rem,6vw,5rem);margin:16px 0}
+h2 {font-size:clamp(1.8rem,3vw,2.7rem);margin:10px 0 18px}
+p {margin-top:0}
+section {padding:75px 7%}
+.section-heading {text-align:center;max-width:750px;margin:0 auto 36px}
+.eyebrow {
+  font-size:.78rem;
+  letter-spacing:2.5px;
+  font-weight:700;
+  text-transform:uppercase;
+  color:#a47638;
+}
+.sub {color:#64717b}
+.btn {
+  display:inline-block;
+  border:0;
+  border-radius:7px;
+  background:var(--gold);
+  color:var(--navy);
+  padding:13px 23px;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+  text-align:center;
+  transition:transform .2s,background .2s;
+}
+.btn:hover {background:#edc583;transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,button:focus-visible {
+  outline:3px solid var(--teal);
+  outline-offset:3px;
+}
+.btn.secondary {background:white}
+.btn.dark {background:var(--navy);color:white}
+.btn:disabled {opacity:.55;cursor:not-allowed;transform:none}
+.hero {
+  min-height:78vh;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,rgba(5,27,43,.85),rgba(5,27,43,.25)),
+    url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1800&q=85')
+    center/cover;
+  color:white;
+  padding:90px 8%;
+}
+.hero-content {max-width:720px}
+.hero .eyebrow {color:#f2d39c}
+.hero p {font-size:1.16rem;max-width:600px}
+.actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+}
+.card {
+  background:white;
+  border:1px solid #e9e6df;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+}
+.card>img {width:100%;height:230px;object-fit:cover;display:block}
+.card-body {padding:23px}
+.card-body h3 {margin:0 0 9px}
+.card-body p {color:#596875}
+.bg-cream {background:var(--cream)}
+.bg-white {background:white}
+.tag {
+  display:inline-block;
+  background:#e5f1ed;
+  color:#22584e;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:.75rem;
+  font-weight:700;
+}
+.price {font-size:1.12rem;font-weight:700;color:var(--navy)!important}
+.tour-details {margin-top:18px}
+.tour-details summary {
+  cursor:pointer;
+  background:var(--gold);
+  padding:12px;
+  border-radius:7px;
+  text-align:center;
+  font-weight:700;
+}
+.tour-info {margin:20px 0}
+.tour-info h4 {margin:0 0 7px}
+.tour-info p {white-space:pre-line;overflow-wrap:anywhere}
+.tour-info ul {padding-left:21px}
+.tour-gallery {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:20px 0;
+}
+.tour-gallery img {width:100%;height:150px;object-fit:cover;border-radius:9px}
+
+/* ABOUT US */
+#about {padding:0;background:var(--cream)}
+.about-banner {
+  position:relative;
+  min-height:90vh;
+  background-color:var(--navy);
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  padding:85px 8%;
+}
+.about-banner::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(5,27,43,.5);
+}
+.about-banner-inner {position:relative;z-index:1;max-width:850px}
+.about-banner h2 {color:white;font-size:clamp(2.3rem,5vw,4.5rem)}
+.about-banner .eyebrow {color:#f2d39c}
+.about-layout {
+  max-width:1180px;
+  margin:auto;
+  padding:85px 7%;
+  display:grid;
+  grid-template-columns:1fr 1.4fr;
+  gap:55px;
+  align-items:center;
+}
+.founder-photo {width:100%;max-height:530px;object-fit:cover;border-radius:14px}
+.about-story {white-space:pre-line;color:var(--ink)}
+.about-tagline {
+  padding:40px 7% 75px;
+  text-align:center;
+  font-size:clamp(1.4rem,3vw,2rem);
+  font-weight:700;
+}
+.about-fallback {text-align:center;padding:70px 8%}
+
+/* BEEN THERE, LOVED THAT */
+.memory-image {width:100%;height:230px;object-fit:cover}
+.memory-meta {color:#8d6638;font-weight:700;font-size:.85rem}
+.review-area {max-width:760px;margin:60px auto 0;text-align:center}
+.review-card {
+  background:white;
+  border:1px solid #eee3d3;
+  border-radius:16px;
+  padding:40px 30px;
+  min-height:220px;
+}
+.review-stars {color:#af7c33;letter-spacing:5px;font-size:1.4rem}
+.review-quote {font-size:1.12rem;color:var(--ink);margin:20px auto}
+.review-name {font-weight:700}
+.review-dots {display:flex;justify-content:center;gap:9px;margin-top:19px}
+.review-dot {
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  padding:0;
+  border:0;
+  cursor:pointer;
+  background:#c9cdd0;
+}
+.review-dot.active {background:#b78442;width:25px;border-radius:20px}
+
+/* PRIVATE TOUR FORM */
+.form-wrap {
+  display:grid;
+  grid-template-columns:.85fr 1.35fr;
+  gap:45px;
+  max-width:1160px;
+  margin:auto;
+  align-items:start;
+}
+.form-panel {background:white;border-radius:16px;padding:30px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.form-grid {display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.field {display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label,.field-label {font-weight:700;font-size:.9rem}
+.field input,.field select,.field textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd3d6;
+  border-radius:7px;
+  background:white;
+  color:var(--navy);
+}
+.field textarea {min-height:110px;resize:vertical}
+.check-row {display:flex;gap:22px;flex-wrap:wrap;margin:12px 0 20px}
+.check-row label {display:flex;align-items:center;gap:7px}
+.age-fields {display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.notice {
+  background:#f4f0e8;
+  padding:15px;
+  border-radius:8px;
+  margin:14px 0;
+  font-size:.9rem;
+}
+
+/* CONTACT */
+.contact {background:var(--navy);color:white;text-align:center}
+.contact .eyebrow {color:#f2d39c}
+.contact-cards {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
+  margin:35px auto;
+  max-width:980px;
+}
+.contact-link {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:9px;
+  padding:22px 12px;
+  background:#21435b;
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+}
+.contact-link:hover {background:#335873}
+.contact-link svg {width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8}
+.contact-details {color:#e2e8ec}
+.contact-details a {color:#f1d19e}
+.floating-messenger {
+  position:fixed;
+  z-index:20;
+  right:20px;
+  bottom:20px;
+  background:#d4a85f;
+  color:#102c43;
+  padding:12px 17px;
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+footer {
+  text-align:center;
+  background:#091f31;
+  color:#d6e1e8;
+  padding:24px;
+  font-size:.9rem;
+}
+@media(max-width:800px) {
+  header {flex-direction:column;text-align:center}
+  nav {justify-content:center}
+  .grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about-layout,.form-wrap {grid-template-columns:1fr}
+  .contact-cards {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about-banner {background-attachment:scroll;min-height:75vh}
+}
+@media(max-width:580px) {
+  section {padding:55px 6%}
+  .grid,.form-grid {grid-template-columns:1fr}
+  .hero {min-height:65vh}
+  .form-panel {padding:20px}
+  .age-fields {grid-template-columns:repeat(2,1fr)}
+  .floating-messenger {font-size:.85rem}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto}
+  .about-banner {background-attachment:scroll}
+  .btn {transition:none}
+}
 </style>
 </head>
+
 <body>
-<header><strong>✦ Travel and Tours by Anne</strong><nav><a href="#destinations">Destinations</a><a href="#about">About</a><a href="#contact">Contact</a></nav></header>
+
+<header>
+  <a class="brand" href="#home">Travel and Tours by Anne</a>
+  <nav aria-label="Main navigation">
+    <a href="#destinations">Destinations</a>
+    <a href="#tours" id="tours-nav" hidden>Tour Packages</a>
+    <a href="#private-tours">Private Tours</a>
+    <a href="#memories">Been There, Loved That</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
 <main>
-<div class="hero"><div class="hero-content"><div class="eyebrow">Discover • Explore • Experience</div><h1>Your Next Adventure Starts Here</h1><p>Beautiful destinations, unforgettable memories, and travel experiences made for you.</p><a class="btn" href="#destinations">Explore Destinations</a></div></div>
-<section id="destinations"><div class="intro"><div class="eyebrow">Get inspired</div><h2>Where Will You Go Next?</h2><p class="sub">Explore some of the destinations we can help you plan. Contact us to inquire about available packages and arrangements.</p></div><div class="cards">
-<article class="card"><img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="Japanese temple and traditional scenery"><div class="card-body"><h3>Japan</h3><p>Culture, cuisine, cities, and unforgettable sights.</p></div></article>
-<article class="card"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80" alt="Tropical Bali scenery"><div class="card-body"><h3>Bali</h3><p>Tropical escapes and relaxing island experiences.</p></div></article>
-<article class="card"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80" alt="Scenic natural landscape"><div class="card-body"><h3>More Adventures</h3><p>Tell us your dream destination and travel dates.</p></div></article>
-</div></section>
-<section id="about" class="light"><div class="about"><div class="eyebrow">Welcome</div><h2>Travel and Tours by Anne</h2><p>Every journey begins with a dream. We look forward to helping you explore destinations, discover experiences, and plan a trip that feels right for you.</p></div></section>
-<section id="contact" class="contact"><div class="eyebrow">Start planning</div><h2>Let's Plan Your Next Getaway</h2><p>Have a destination in mind? Send us your preferred travel dates, number of travelers, and destination. We'll be happy to discuss your travel inquiry.</p><a class="btn" href="mailto:YOUR_EMAIL_HERE?subject=Travel%20Inquiry">Email Us to Inquire</a><p style="margin-top:18px;font-size:.85rem">Contact details will be updated before launch.</p></section>
-</main><footer>© <span id="year">2026</span> Travel and Tours by Anne. All rights reserved.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
-  
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">Discover • Explore • Experience</div>
+    <h1>Your Next Adventure Starts Here</h1>
+    <p>Beautiful destinations, thoughtful planning, and unforgettable experiences. Your journey, beautifully planned.</p>
+    <div class="actions">
+      <a class="btn" href="#tours" id="explore-tours" hidden>Explore Tours</a>
+      <a class="btn" href="#destinations" id="explore-destinations">Explore Destinations</a>
+      <a class="btn secondary" href="#private-tours">Plan a Private Tour</a>
+    </div>
+  </div>
+</section>
+
+<section id="destinations" class="bg-white">
+  <div class="section-heading">
+    <div class="eyebrow">Get Inspired</div>
+    <h2>Where Will You Go Next?</h2>
+    <p class="sub">From vibrant cities to tropical escapes, discover places that inspire your next adventure.</p>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="Kyoto, Japan">
+      <div class="card-body"><h3>Japan</h3><p>Culture, cuisine, cities, and timeless discoveries.</p></div>
+    </article>
+    <article class="card">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80" alt="Bali, Indonesia">
+      <div class="card-body"><h3>Bali</h3><p>Tropical escapes and beautiful island experiences.</p></div>
+    </article>
+    <article class="card">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80" alt="Scenic landscape">
+      <div class="card-body"><h3>More Adventures</h3><p>Tell us where your travel dreams are taking you.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- TOUR PACKAGES ARE LOADED FROM SANITY -->
+
+<section id="private-tours" class="bg-cream">
+  <div class="section-heading">
+    <div class="eyebrow">Made Just for You</div>
+    <h2>Private & Customized Tours</h2>
+    <p class="sub">Your destination. Your pace. Your kind of adventure.</p>
+  </div>
+
+  <div class="form-wrap">
+    <div>
+      <h2>Let's Design Your Perfect Getaway.</h2>
+      <p>Whether you're planning a family holiday, a special celebration, or a private adventure, tell us what you have in mind.</p>
+      <p>Share your travel preferences and we'll help you explore options suited to your plans.</p>
+      <p class="sub">For general questions or existing tour packages, Messenger remains our primary contact channel.</p>
+      <a class="btn dark" href="https://m.me/travelandtoursbyanne" target="_blank" rel="noopener noreferrer">Message Us on Messenger</a>
+    </div>
+
+    <div class="form-panel">
+      <h3>Private Tour Inquiry</h3>
+
+      <form id="private-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="customer-name">Full Name *</label>
+            <input id="customer-name" name="Customer Name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="customer-email">Email Address *</label>
+            <input id="customer-email" name="email" type="email" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="customer-phone">Contact Number *</label>
+          <input id="customer-phone" name="Contact Number" type="tel" required autocomplete="tel">
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="date-from">Preferred Departure *</label>
+            <input id="date-from" name="Preferred Departure" type="date" required>
+          </div>
+          <div class="field">
+            <label for="date-to">Preferred Return *</label>
+            <input id="date-to" name="Preferred Return" type="date" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="departure-city">Departure City / Airport</label>
+          <input id="departure-city" name="Departure City" placeholder="e.g. Manila">
+        </div>
+
+        <div class="field-label">Number of Travellers *</div>
+        <div class="check-row">
+          <label><input type="checkbox" id="has-adults" checked> Adults</label>
+          <label><input type="checkbox" id="has-kids"> Children</label>
+        </div>
+
+        <div class="field" id="adult-field">
+          <label for="adult-count">Number of Adults</label>
+          <input id="adult-count" type="number" min="1" max="100" value="2" required>
+        </div>
+
+        <div id="kids-fields" hidden>
+          <div class="field">
+            <label for="kid-count">Number of Children</label>
+            <input id="kid-count" type="number" min="1" max="30" value="1">
+          </div>
+          <div class="field-label">Age of Each Child</div>
+          <div class="age-fields" id="age-fields"></div>
+        </div>
+
+        <div class="field">
+          <label for="country">Destination Country *</label>
+          <input id="country" name="Destination Country" placeholder="e.g. Japan" required>
+        </div>
+
+        <div class="field" id="city-field" hidden>
+          <label for="cities">Preferred Cities / Places</label>
+          <input id="cities" name="Preferred Cities" placeholder="e.g. Tokyo, Kyoto, Osaka">
+        </div>
+
+        <div class="field">
+          <label for="hotel">Preferred Hotel Category *</label>
+          <select id="hotel" name="Preferred Hotel" required>
+            <option value="">Select hotel preference</option>
+            <option value="3-Star">3-Star Hotel</option>
+            <option value="4-Star">4-Star Hotel</option>
+            <option value="5-Star">5-Star Hotel</option>
+            <option value="Flexible">Open to Recommendations</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="requirements">Other Requirements</label>
+          <textarea id="requirements" name="Other Requirements" placeholder="Special occasions, preferred attractions, room arrangements, accessibility needs or other requests."></textarea>
+        </div>
+
+        <label style="display:flex;gap:10px;align-items:start;font-size:.85rem">
+          <input type="checkbox" id="privacy-consent" required>
+          <span>I agree that Travel and Tours by Anne may use the information I provide to respond to my travel inquiry.</span>
+        </label>
+
+        <p class="notice" id="form-notice">
+          Online form submission is being prepared. Please contact us through Messenger for now.
+        </p>
+
+        <button type="submit" class="btn" id="submit-lead" disabled>
+          Submit Private Tour Inquiry
+        </button>
+        <p id="form-result" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- BEEN THERE, LOVED THAT -->
+
+<section id="memories" class="bg-cream">
+  <div class="section-heading">
+    <div class="eyebrow">Real Places. Real Experiences.</div>
+    <h2>Been There, Loved That.</h2>
+    <p class="sub">Beautiful moments, unforgettable adventures, and stories worth sharing.</p>
+  </div>
+
+  <div id="memory-content">
+    <p class="sub" style="text-align:center">
+      Our travel stories are being prepared.
+    </p>
+  </div>
+
+  <div id="reviews-area" class="review-area" hidden>
+    <div class="eyebrow">Traveller Experiences</div>
+    <h2>Words From Our Travellers</h2>
+
+    <div class="review-card" id="review-card" aria-live="off">
+      <div id="review-stars" class="review-stars"></div>
+      <p id="review-quote" class="review-quote"></p>
+      <div id="review-name" class="review-name"></div>
+      <div id="review-destination" class="sub"></div>
+    </div>
+
+    <div id="review-dots" class="review-dots" aria-label="Choose a review"></div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+
+<section id="about">
+  <div class="about-fallback">
+    <div class="eyebrow">Our Story</div>
+    <h2>Travel and Tours by Anne</h2>
+    <p>Thoughtfully Planned. Beautifully Experienced.</p>
+    <p>Every journey begins with a dream. We look forward to helping you discover unforgettable destinations and meaningful travel experiences.</p>
+  </div>
+</section>
+
+<!-- CONTACT US -->
+
+<section id="contact" class="contact">
+  <div class="eyebrow">Let's Connect</div>
+  <h2>Your Next Adventure Starts With a Conversation.</h2>
+  <p>Questions, travel plans, or dream destinations? We'd love to hear from you.</p>
+
+  <div class="contact-cards">
+    <a class="contact-link" href="https://m.me/travelandtoursbyanne" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-3-.5L3 21l1.6-5A8.5 8.5 0 1 1 21 11.5Z"/><path d="m7 14 4-4 3 3 3-3"/></svg>
+      <strong>Messenger</strong>
+      <small>Primary Contact</small>
+    </a>
+    <a class="contact-link" href="https://wa.me/639063650308" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.3-.2-3.3-.7L3 21l1.8-5a8.5 8.5 0 1 1 15.2-4.5Z"/><path d="M9 8c.5 3 2 5 5 6l2-1"/></svg>
+      <strong>WhatsApp</strong>
+      <small>Chat With Us</small>
+    </a>
+    <a class="contact-link" href="mailto:travelandtoursbyanne@gmail.com?subject=Travel%20Inquiry">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg>
+      <strong>Email</strong>
+      <small>Send an Inquiry</small>
+    </a>
+    <a class="contact-link" href="tel:+639063650308">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h4l1 5-2.5 2.5a15 15 0 0 0 4 4L16 12l5 1v4a3 3 0 0 1-3 3A15 15 0 0 1 4 6a3 3 0 0 1 3-3Z"/></svg>
+      <strong>Call Us</strong>
+      <small>+63 906 365 0308</small>
+    </a>
+  </div>
+
+  <div class="contact-details">
+    <p><strong>Business Hours:</strong> 9:00 AM – 6:00 PM (Philippine Time)</p>
+    <p><strong>Location:</strong> Pasong Buaya II, City of Imus, Cavite, Philippines</p>
+    <p><a href="https://www.facebook.com/travelandtoursbyanne" target="_blank" rel="noopener noreferrer">Visit Our Facebook Page</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Travel and Tours by Anne.
+  All rights reserved.
+</footer>
+
+<a class="floating-messenger"
+   href="https://m.me/travelandtoursbyanne"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Message us on Facebook Messenger">
+  Messenger
+</a>
+
 <script>
-(async function () {
-  const projectId = 'eb0bffrp';
-  const dataset = 'production';
+document.getElementById('year').textContent = new Date().getFullYear();
 
-  const query = `*[
-    _type == "tourPackage" &&
-    status in ["available", "coming-soon"]
-  ] | order(_createdAt desc) {
-    title,
-    destination,
-    currency,
-    price,
-    travelDates,
-    status,
-    "photo": coverImage.asset->url
-  }`;
+const SANITY_PROJECT = 'eb0bffrp';
+const SANITY_DATASET = 'production';
 
+/*
+  The form stays disabled until your verified Web3Forms
+  access key is added and delivery is tested.
+*/
+const WEB3FORMS_ACCESS_KEY = '';
+
+function sanityQuery(query) {
   const url =
-    `https://${projectId}.apicdn.sanity.io/v2025-02-19` +
-    `/data/query/${dataset}?perspective=published&query=` +
+    `https://${SANITY_PROJECT}.apicdn.sanity.io/v2025-02-19` +
+    `/data/query/${SANITY_DATASET}?perspective=published&query=` +
     encodeURIComponent(query);
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Cannot load tours');
-
+  return fetch(url).then(async response => {
+    if (!response.ok) throw new Error('Sanity request failed');
     const data = await response.json();
-    const tours = data.result || [];
+    return data.result;
+  });
+}
 
-    // Don't display a tour section until something is published.
-    if (!tours.length) return;
+function el(tag, text, className) {
+  const node = document.createElement(tag);
+  if (text !== undefined && text !== null) node.textContent = String(text);
+  if (className) node.className = className;
+  return node;
+}
 
-    const section = document.createElement('section');
-    section.id = 'tours';
+function cleanText(value) {
+  return String(value || '')
+    .replace(/^#{1,6}\s*/gm, '')
+    .replace(/\*\*/g, '')
+    .replace(/^\*(?!\s)/gm, '')
+    .trim();
+}
 
-    const heading = document.createElement('h2');
-    heading.className = 'center';
-    heading.textContent = 'Explore Our Tours';
-    section.appendChild(heading);
+function money(value, currency) {
+  const prefix =
+    currency === 'USD' ? 'US$' :
+    currency === 'PHP' ? '₱' : '';
 
-    const cards = document.createElement('div');
-    cards.className = 'cards';
+  return prefix + Number(value).toLocaleString('en-US');
+}
 
-    tours.forEach(tour => {
-      const card = document.createElement('article');
-      card.className = 'card';
+function addInfo(parent, heading, content) {
+  if (!content || (Array.isArray(content) && !content.length)) return;
 
-      if (tour.photo) {
-        const img = document.createElement('img');
-        img.src = tour.photo;
-        img.alt = tour.title || 'Travel package';
-        img.loading = 'lazy';
-        card.appendChild(img);
-      }
+  const wrapper = el('div', null, 'tour-info');
+  wrapper.appendChild(el('h4', heading));
 
-      const body = document.createElement('div');
-      body.className = 'card-body';
-
-      const title = document.createElement('h3');
-      title.textContent = tour.title || 'Travel Package';
-      body.appendChild(title);
-
-      const destination = document.createElement('p');
-      destination.textContent = tour.destination || '';
-      body.appendChild(destination);
-
-      if (typeof tour.price === 'number') {
-        const price = document.createElement('p');
-        price.textContent =
-          `From ${tour.currency === 'USD' ? 'US$' : '₱'}` +
-          `${tour.price.toLocaleString()} per person`;
-        body.appendChild(price);
-      }
-
-      if (tour.travelDates) {
-        const dates = document.createElement('p');
-        dates.textContent = tour.travelDates;
-        body.appendChild(dates);
-      }
-
-      const link = document.createElement('a');
-      link.className = 'btn';
-      link.href = '#contact';
-      link.textContent = 'Inquire About This Tour';
-      body.appendChild(link);
-
-      card.appendChild(body);
-      cards.appendChild(card);
+  if (Array.isArray(content)) {
+    const list = el('ul');
+    content.forEach(item => {
+      list.appendChild(el('li', cleanText(item)));
     });
-
-    section.appendChild(cards);
-
-    const about = document.getElementById('about');
-    if (about) about.before(section);
-
-  } catch (error) {
-    console.error('Sanity tour connection:', error);
+    wrapper.appendChild(list);
+  } else {
+    wrapper.appendChild(el('p', cleanText(content)));
   }
-})();
 
-<script>
-(async function () {
-  const projectId = 'eb0bffrp';
-  const dataset = 'production';
+  parent.appendChild(wrapper);
+}
 
+/* TOUR PACKAGES */
+
+async function loadTours() {
   const query = `*[
     _type == "tourPackage" &&
-    status in ["available", "coming-soon"]
+    status in ["available","coming-soon"]
   ] | order(_createdAt desc) {
-    title,
-    destination,
-    currency,
-    price,
-    travelDates,
-    description,
-    itinerary,
-    inclusions,
-    exclusions,
-    departures[]{startDate, endDate, price},
-    status,
-    "photo": coverImage.asset->url,
-    "galleryPhotos": gallery[].asset->url
+    title,destination,currency,price,travelDates,
+    description,itinerary,inclusions,exclusions,status,
+    departures[]{startDate,endDate,price},
+    "photo":coverImage.asset->url,
+    "galleryPhotos":gallery[].asset->url
   }`;
 
-  const url =
-    `https://${projectId}.apicdn.sanity.io/v2025-02-19` +
-    `/data/query/${dataset}?perspective=published&query=` +
-    encodeURIComponent(query);
-
-  const styles = document.createElement('style');
-  styles.textContent = `
-    #tours { background: #f8f6f0; }
-    #tours .cards { align-items: start; }
-    .tour-details { margin-top: 15px; }
-    .tour-details summary {
-      cursor: pointer;
-      background: #d4a85f;
-      color: #102c43;
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: bold;
-      text-align: center;
-    }
-    .tour-details[open] summary { margin-bottom: 20px; }
-    .tour-info { margin: 15px 0 22px; }
-    .tour-info h4 { margin: 0 0 8px; }
-    .tour-info p { white-space: pre-line; }
-    .tour-info ul { padding-left: 20px; }
-    .tour-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-    .tour-gallery img {
-      height: 140px;
-      border-radius: 8px;
-    }
-    .tour-price { font-weight: bold; margin-top: 10px !important; }
-  `;
-  document.head.appendChild(styles);
-
-  function addText(parent, tag, value, className) {
-    const element = document.createElement(tag);
-    element.textContent = value;
-    if (className) element.className = className;
-    parent.appendChild(element);
-    return element;
-  }
-
-  function cleanText(value) {
-    return String(value || '')
-      .replace(/^#{1,6}\s*/gm, '')
-      .replace(/\*\*/g, '')
-      .replace(/^\*(?!\s)/gm, '');
-  }
-
-  function money(value, currency) {
-    const symbol = currency === 'USD' ? 'US$' :
-                   currency === 'PHP' ? '₱' : '';
-    return symbol + Number(value).toLocaleString('en-US');
-  }
-
-  function addInformation(parent, heading, content) {
-    if (!content) return;
-
-    const section = document.createElement('div');
-    section.className = 'tour-info';
-    addText(section, 'h4', heading);
-
-    if (Array.isArray(content)) {
-      const list = document.createElement('ul');
-      content.forEach(item => {
-        addText(list, 'li', cleanText(item));
-      });
-      section.appendChild(list);
-    } else {
-      addText(section, 'p', cleanText(content));
-    }
-
-    parent.appendChild(section);
-  }
-
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Unable to load tours');
+    const tours = await sanityQuery(query);
+    if (!tours || !tours.length) return;
 
-    const data = await response.json();
-    const tours = data.result || [];
-
-    if (!tours.length) return;
-
-    const section = document.createElement('section');
+    const section = el('section');
     section.id = 'tours';
+    section.className = 'bg-cream';
 
-    addText(section, 'h2', 'Explore Our Tours', 'center');
+    const intro = el('div', null, 'section-heading');
+    intro.appendChild(el('div', 'Explore More', 'eyebrow'));
+    intro.appendChild(el('h2', 'Our Tour Packages'));
+    intro.appendChild(el('p',
+      'Discover experiences designed for your next adventure.',
+      'sub'
+    ));
+    section.appendChild(intro);
 
-    const cards = document.createElement('div');
-    cards.className = 'cards';
+    const cards = el('div', null, 'grid');
 
     tours.forEach(tour => {
-      const card = document.createElement('article');
-      card.className = 'card';
+      const card = el('article', null, 'card');
 
       if (tour.photo) {
-        const img = document.createElement('img');
+        const img = el('img');
         img.src = tour.photo;
-        img.alt = tour.title || 'Tour photograph';
+        img.alt = tour.title || 'Tour package';
         img.loading = 'lazy';
         card.appendChild(img);
       }
 
-      const body = document.createElement('div');
-      body.className = 'card-body';
+      const body = el('div', null, 'card-body');
+      body.appendChild(el('h3', tour.title || 'Travel Package'));
+      body.appendChild(el('p', tour.destination || ''));
 
-      addText(body, 'h3', tour.title || 'Travel Package');
-      addText(body, 'p', tour.destination || '');
+      if (tour.status === 'coming-soon') {
+        body.appendChild(el('span', 'Coming Soon', 'tag'));
+      }
 
       if (typeof tour.price === 'number' && tour.currency) {
-        addText(
-          body, 'p',
+        body.appendChild(el(
+          'p',
           'From ' + money(tour.price, tour.currency) + ' per person',
-          'tour-price'
-        );
+          'price'
+        ));
       }
 
-      addInformation(body, 'Travel Dates', tour.travelDates);
+      addInfo(body, 'Travel Dates', tour.travelDates);
 
-      const details = document.createElement('details');
-      details.className = 'tour-details';
+      const details = el('details', null, 'tour-details');
+      details.appendChild(el('summary', 'View Tour Details'));
 
-      addText(details, 'summary', 'View Tour Details');
+      addInfo(details, 'Package Description', tour.description);
+      addInfo(details, 'Day-by-Day Itinerary', tour.itinerary);
+      addInfo(details, 'Inclusions', tour.inclusions);
+      addInfo(details, 'Exclusions', tour.exclusions);
 
-      addInformation(details, 'Package Description', tour.description);
-      addInformation(details, 'Day-by-Day Itinerary', tour.itinerary);
-      addInformation(details, 'Inclusions', tour.inclusions);
-      addInformation(details, 'Exclusions', tour.exclusions);
-
-      if (tour.departures?.length) {
-        const lines = tour.departures.map(d => {
-          const amount = typeof d.price === 'number'
+      if (tour.departures && tour.departures.length) {
+        const prices = tour.departures.map(d =>
+          `${d.startDate} to ${d.endDate}: ` +
+          `${typeof d.price === 'number'
             ? money(d.price, tour.currency)
-            : 'Price on request';
+            : 'Price on request'} per person`
+        );
 
-          return `${d.startDate} to ${d.endDate}: ${amount} per person`;
-        });
-
-        addInformation(details, 'Special Departure Prices', lines);
+        addInfo(details, 'Special Departure Prices', prices);
       }
 
-      if (tour.galleryPhotos?.length) {
-        const gallery = document.createElement('div');
-        gallery.className = 'tour-gallery';
+      if (tour.galleryPhotos && tour.galleryPhotos.length) {
+        const gallery = el('div', null, 'tour-gallery');
 
-        tour.galleryPhotos.filter(Boolean).forEach(photo => {
-          const img = document.createElement('img');
-          img.src = photo;
-          img.alt = tour.title || 'Tour gallery';
+        tour.galleryPhotos.filter(Boolean).forEach(src => {
+          const img = el('img');
+          img.src = src;
+          img.alt = tour.title || 'Tour photo';
           img.loading = 'lazy';
           gallery.appendChild(img);
         });
@@ -307,12 +732,19 @@
         details.appendChild(gallery);
       }
 
-      const inquiry = document.createElement('a');
-      inquiry.className = 'btn';
-      inquiry.href = '#contact';
-      inquiry.textContent = 'Inquire About This Tour';
-      details.appendChild(inquiry);
+      addInfo(
+        details,
+        'Booking Information',
+        'Rates and availability are subject to confirmation. ' +
+        'Please contact us for complete booking terms and conditions.'
+      );
 
+      const inquiry = el('a', 'Inquire on Messenger', 'btn');
+      inquiry.href = 'https://m.me/travelandtoursbyanne';
+      inquiry.target = '_blank';
+      inquiry.rel = 'noopener noreferrer';
+
+      details.appendChild(inquiry);
       body.appendChild(details);
       card.appendChild(body);
       cards.appendChild(card);
@@ -320,11 +752,427 @@
 
     section.appendChild(cards);
 
-    const about = document.getElementById('about');
-    if (about) about.before(section);
+    document.getElementById('private-tours').before(section);
+
+    document.getElementById('tours-nav').hidden = false;
+    document.getElementById('explore-tours').hidden = false;
+    document.getElementById('explore-destinations').hidden = true;
 
   } catch (error) {
-    console.error('Sanity connection error:', error);
+    console.error('Tour packages:', error);
   }
-})();
+}
+
+/* ABOUT US */
+
+async function loadAbout() {
+  const query = `*[_type == "aboutUs"]
+    | order(_updatedAt desc)[0] {
+    heading,subheading,founderName,story,tagline,
+    "founderPhotoUrl":founderPhoto.asset->url,
+    "bannerPhotoUrl":aboutPhoto.asset->url
+  }`;
+
+  try {
+    const about = await sanityQuery(query);
+    if (!about) return;
+
+    const section = document.getElementById('about');
+
+    const banner = el('div', null, 'about-banner');
+    if (about.bannerPhotoUrl) {
+      banner.style.backgroundImage =
+        `url("${about.bannerPhotoUrl}")`;
+    }
+
+    const bannerInner = el('div', null, 'about-banner-inner');
+    bannerInner.appendChild(el('div', 'Discover Our Story', 'eyebrow'));
+    bannerInner.appendChild(el(
+      'h2',
+      about.subheading || 'Thoughtfully Planned. Beautifully Experienced.'
+    ));
+    banner.appendChild(bannerInner);
+
+    const layout = el('div', null, 'about-layout');
+
+    if (about.founderPhotoUrl) {
+      const img = el('img');
+      img.src = about.founderPhotoUrl;
+      img.className = 'founder-photo';
+      img.alt = 'Anne Nagano, founder';
+      img.loading = 'lazy';
+      layout.appendChild(img);
+    } else {
+      layout.style.gridTemplateColumns = '1fr';
+    }
+
+    const content = el('div');
+    content.appendChild(el('div', 'Meet the Founder', 'eyebrow'));
+    content.appendChild(el('h2', about.founderName || 'Anne Nagano'));
+
+    if (about.heading) {
+      content.appendChild(el('h3', about.heading));
+    }
+
+    content.appendChild(el(
+      'div',
+      cleanText(about.story),
+      'about-story'
+    ));
+
+    layout.appendChild(content);
+
+    const tagline = el(
+      'div',
+      about.tagline || 'Your Journey, Beautifully Planned.',
+      'about-tagline'
+    );
+
+    section.replaceChildren(banner, layout, tagline);
+
+  } catch (error) {
+    console.error('About Us:', error);
+  }
+}
+
+/* COMPLETED TOURS AND APPROVED REVIEWS */
+
+async function loadMemories() {
+  const query = `*[_type == "travelMemories"]
+    | order(travelDate desc) {
+    title,destination,travelDate,highlights,
+    customerName,review,rating,reviewApproved,featured,
+    "cover":coverPhoto.asset->url,
+    "photos":gallery[].asset->url
+  }`;
+
+  try {
+    const memories = await sanityQuery(query);
+    if (!memories || !memories.length) return;
+
+    const holder = document.getElementById('memory-content');
+    const grid = el('div', null, 'grid');
+
+    const ordered = [...memories].sort(
+      (a,b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))
+    );
+
+    ordered.forEach(item => {
+      if (!item.cover && !item.highlights && !item.photos?.length) return;
+
+      const card = el('article', null, 'card');
+
+      const photoUrl = item.cover ||
+        (item.photos || []).find(Boolean);
+
+      if (photoUrl) {
+        const img = el('img');
+        img.src = photoUrl;
+        img.alt = item.destination || 'Travel memory';
+        img.loading = 'lazy';
+        card.appendChild(img);
+      }
+
+      const body = el('div', null, 'card-body');
+      body.appendChild(el('h3', item.title || 'Travel Memories'));
+
+      if (item.destination) {
+        body.appendChild(el('p', item.destination, 'memory-meta'));
+      }
+
+      if (item.highlights) {
+        body.appendChild(el('p', cleanText(item.highlights)));
+      }
+
+      if (item.photos?.length) {
+        const details = el('details', null, 'tour-details');
+        details.appendChild(el('summary', 'View Captured Moments'));
+
+        const gallery = el('div', null, 'tour-gallery');
+        item.photos.filter(Boolean).forEach(src => {
+          const img = el('img');
+          img.src = src;
+          img.alt = item.destination || 'Travel photo';
+          img.loading = 'lazy';
+          gallery.appendChild(img);
+        });
+
+        details.appendChild(gallery);
+        body.appendChild(details);
+      }
+
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+
+    if (grid.children.length) {
+      holder.replaceChildren(grid);
+    }
+
+    const reviews = memories.filter(item =>
+      item.reviewApproved === true &&
+      typeof item.review === 'string' &&
+      item.review.trim() &&
+      item.customerName
+    );
+
+    if (reviews.length) setupReviewCarousel(reviews);
+
+  } catch (error) {
+    console.error('Travel stories:', error);
+  }
+}
+
+/* AUTOMATIC REVIEW CAROUSEL */
+
+function setupReviewCarousel(reviews) {
+  const area = document.getElementById('reviews-area');
+  const dots = document.getElementById('review-dots');
+  const quote = document.getElementById('review-quote');
+  const name = document.getElementById('review-name');
+  const destination = document.getElementById('review-destination');
+  const stars = document.getElementById('review-stars');
+
+  let active = 0;
+  let timer = null;
+
+  const reduceMotion =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(index) {
+    active = index;
+    const review = reviews[index];
+
+    quote.textContent = cleanText(review.review);
+    name.textContent = review.customerName;
+    destination.textContent = review.destination || '';
+
+    stars.textContent =
+      Number.isInteger(review.rating) &&
+      review.rating >= 1 && review.rating <= 5
+        ? '★'.repeat(review.rating) +
+          '☆'.repeat(5 - review.rating)
+        : '';
+
+    [...dots.children].forEach((button,i) => {
+      button.classList.toggle('active', i === active);
+      button.setAttribute('aria-pressed', String(i === active));
+    });
+  }
+
+  function stop() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function start() {
+    stop();
+    if (reviews.length < 2 || reduceMotion ||
+        document.hidden || area.matches(':hover') ||
+        area.contains(document.activeElement)) return;
+
+    timer = setInterval(() => {
+      show((active + 1) % reviews.length);
+    }, 5500);
+  }
+
+  reviews.forEach((review,i) => {
+    const dot = el('button');
+    dot.type = 'button';
+    dot.className = 'review-dot';
+    dot.setAttribute('aria-label', `Show review ${i+1}`);
+    dot.addEventListener('click', () => {
+      show(i);
+      start();
+    });
+    dots.appendChild(dot);
+  });
+
+  area.addEventListener('mouseenter', stop);
+  area.addEventListener('mouseleave', start);
+  area.addEventListener('focusin', stop);
+  area.addEventListener('focusout', () => setTimeout(start, 0));
+  document.addEventListener('visibilitychange', start);
+
+  area.hidden = false;
+  show(0);
+  start();
+}
+
+/* PRIVATE TOUR FORM INTERACTIONS */
+
+const hasAdults = document.getElementById('has-adults');
+const hasKids = document.getElementById('has-kids');
+const adultField = document.getElementById('adult-field');
+const adultCount = document.getElementById('adult-count');
+const kidsFields = document.getElementById('kids-fields');
+const kidCount = document.getElementById('kid-count');
+const ages = document.getElementById('age-fields');
+const country = document.getElementById('country');
+const cityField = document.getElementById('city-field');
+const dateFrom = document.getElementById('date-from');
+const dateTo = document.getElementById('date-to');
+const form = document.getElementById('private-form');
+const submitButton = document.getElementById('submit-lead');
+const formResult = document.getElementById('form-result');
+
+function updateTravellers() {
+  adultField.hidden = !hasAdults.checked;
+  kidsFields.hidden = !hasKids.checked;
+  adultCount.required = hasAdults.checked;
+
+  if (!hasKids.checked) {
+    ages.replaceChildren();
+    return;
+  }
+
+  const count = Math.min(30, Math.max(1, Number(kidCount.value) || 1));
+  const oldValues = [...ages.querySelectorAll('input')].map(x => x.value);
+
+  ages.replaceChildren();
+
+  for (let i = 0; i < count; i++) {
+    const wrapper = el('div', null, 'field');
+    const id = 'child-age-' + i;
+    const label = el('label', 'Child ' + (i+1));
+    label.htmlFor = id;
+
+    const input = el('input');
+    input.id = id;
+    input.type = 'number';
+    input.min = '0';
+    input.max = '17';
+    input.placeholder = 'Age';
+    input.required = true;
+    input.value = oldValues[i] ?? '';
+
+    wrapper.append(label,input);
+    ages.appendChild(wrapper);
+  }
+}
+
+hasAdults.addEventListener('change', updateTravellers);
+hasKids.addEventListener('change', updateTravellers);
+kidCount.addEventListener('change', updateTravellers);
+
+country.addEventListener('input', () => {
+  cityField.hidden = !country.value.trim();
+});
+
+dateFrom.min = new Date().toLocaleDateString('en-CA',{
+  timeZone:'Asia/Manila'
+}).replace(/\//g,'-');
+
+dateFrom.addEventListener('change', () => {
+  dateTo.min = dateFrom.value;
+  if (dateTo.value && dateTo.value < dateFrom.value) {
+    dateTo.value = '';
+  }
+});
+
+updateTravellers();
+
+/* FORM DELIVERY — ENABLE AFTER GMAIL VERIFICATION */
+
+const formReady = Boolean(WEB3FORMS_ACCESS_KEY.trim());
+
+if (formReady) {
+  submitButton.disabled = false;
+  document.getElementById('form-notice').textContent =
+    'Your inquiry will be sent to Travel and Tours by Anne for review.';
+}
+
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  formResult.textContent = '';
+
+  if (!formReady) return;
+
+  if (!hasAdults.checked && !hasKids.checked) {
+    formResult.textContent = 'Select at least one traveller type.';
+    return;
+  }
+
+  if (dateTo.value < dateFrom.value) {
+    formResult.textContent = 'Please check your travel dates.';
+    return;
+  }
+
+  if (!form.reportValidity()) return;
+
+  const childAges = hasKids.checked
+    ? [...ages.querySelectorAll('input')].map(x => x.value)
+    : [];
+
+  const submittedDate = new Intl.DateTimeFormat('en-GB', {
+    timeZone:'Asia/Manila',
+    day:'2-digit',
+    month:'long',
+    year:'numeric'
+  }).format(new Date());
+
+  const data = {
+    access_key: WEB3FORMS_ACCESS_KEY,
+    subject: 'New Lead - ' + submittedDate,
+    from_name: 'Travel and Tours by Anne Website',
+    name: document.getElementById('customer-name').value,
+    email: document.getElementById('customer-email').value,
+    'Contact Number': document.getElementById('customer-phone').value,
+    'Preferred Departure': dateFrom.value,
+    'Preferred Return': dateTo.value,
+    'Departure City': document.getElementById('departure-city').value,
+    'Number of Adults': hasAdults.checked ? adultCount.value : '0',
+    'Number of Children': hasKids.checked ? kidCount.value : '0',
+    'Children Ages': childAges.join(', ') || 'None',
+    'Destination Country': country.value,
+    'Preferred Cities': document.getElementById('cities').value,
+    'Preferred Hotel': document.getElementById('hotel').value,
+    'Other Requirements': document.getElementById('requirements').value,
+    'Privacy Consent': 'Agreed',
+    botcheck: false
+  };
+
+  submitButton.disabled = true;
+  formResult.textContent = 'Submitting your inquiry...';
+
+  try {
+    const response = await fetch(
+      'https://api.web3forms.com/submit',
+      {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(data)
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error('Submission failed');
+    }
+
+    formResult.textContent =
+      'Thank you. Your travel inquiry has been submitted.';
+    form.reset();
+    updateTravellers();
+    cityField.hidden = true;
+
+  } catch (error) {
+    formResult.textContent =
+      'Your inquiry could not be sent. Please contact us through Messenger.';
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+
+/* LOAD PUBLIC SANITY CONTENT */
+
+loadTours();
+loadAbout();
+loadMemories();
 </script>
+
+</body>
+</html>
