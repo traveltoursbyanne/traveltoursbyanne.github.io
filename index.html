@@ -1174,316 +1174,221 @@ loadAbout();
 // loadMemories();
 </script>
 
+
 <style>
-/* BEEN THERE, LOVED THAT — NEW REVIEW SHOWCASE */
+/* BEEN THERE, LOVED THAT — SPLIT REVIEW CAROUSEL */
 
 #memories {
-  padding: 85px 6%;
+  padding: 75px 6%;
   background: #faf7f2;
 }
 
-#memories > .section-heading {
-  margin-bottom: 30px;
+#memories .section-heading {
+  max-width: 750px;
+  margin: 0 auto 38px;
+  text-align: center;
 }
 
+/* Hide the previous travel stories and review design */
 #memory-content,
 #reviews-area {
   display: none !important;
 }
 
-.review-showcase {
-  position: relative;
-  max-width: 1150px;
-  min-height: 540px;
+.review-split {
+  max-width: 1120px;
+  width: 100%;
   margin: 0 auto;
-  border-radius: 22px;
+  display: grid;
+  grid-template-columns: 48% 52%;
+  min-height: 425px;
+  border-radius: 18px;
   overflow: hidden;
-  isolation: isolate;
+  background: #ffffff;
+  border: 1px solid #ebe4da;
+  box-shadow: 0 15px 40px rgba(16,44,67,.07);
+}
+
+/* Left side: captured photograph */
+
+.review-picture {
+  position: relative;
+  background: #e6e5df;
+  min-height: 425px;
+  overflow: hidden;
+}
+
+.review-picture img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Right side: actual customer review */
+
+.review-text-panel {
+  padding: 55px 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background: #ffffff;
+  color: #102c43;
+}
+
+.review-label {
+  color: #a37539;
+  font-size: .78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.review-stars-new {
+  color: #b88642;
+  font-size: 1.45rem;
+  letter-spacing: 5px;
+  margin-bottom: 15px;
+}
+
+.review-stars-new:empty {
+  display: none;
+}
+
+.review-quote-new {
+  color: #344957;
+  font-size: clamp(1.08rem,1.7vw,1.35rem);
+  font-style: italic;
+  line-height: 1.8;
+  margin: 0 0 24px;
+  overflow-wrap: anywhere;
+}
+
+.review-customer-new {
+  color: #102c43;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 5px;
+}
+
+.review-destination-new {
+  color: #71808b;
+  font-size: .9rem;
+  margin: 0;
+}
+
+/* Carousel controls */
+
+.review-navigation {
+  max-width: 1120px;
+  margin: 24px auto 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 65px 65px 85px;
+  gap: 18px;
+}
+
+.review-arrow-new {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  border: 1px solid #d9d4cc;
+  background: white;
+  color: #102c43;
+  font-size: 25px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.review-arrow-new:hover {
   background: #102c43;
   color: white;
 }
 
-.review-scenery {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background-position: center;
-  background-size: cover;
-  transition: opacity .5s ease;
-}
-
-.review-showcase::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(
-    135deg,
-    rgba(7,28,43,.65),
-    rgba(7,28,43,.4),
-    rgba(7,28,43,.72)
-  );
-}
-
-.review-glass-card {
-  width: 100%;
-  max-width: 760px;
-  text-align: center;
-  padding: 36px 40px;
-  border-radius: 20px;
-  background: rgba(8,29,45,.48);
-  border: 1px solid rgba(255,255,255,.34);
-  box-shadow: 0 18px 50px rgba(0,0,0,.18);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.review-glass-card h3 {
-  color: #f4d29d;
-  margin-bottom: 5px;
-}
-
-.review-glass-card p {
-  color: white;
-}
-
-.review-showcase-quote {
-  font-size: clamp(1.05rem,2.1vw,1.45rem);
-  font-style: italic;
-  line-height: 1.75;
-  margin: 18px auto;
-}
-
-.review-showcase-stars {
-  color: #ffd799;
-  letter-spacing: 4px;
-  font-size: 1.4rem;
-  min-height: 10px;
-}
-
-.review-showcase-destination {
-  color: #e8e9e9 !important;
-  font-size: .9rem;
-}
-
-.review-photo-strip {
+.review-dots-new {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  overflow-x: auto;
-  margin-top: 22px;
-  padding-bottom: 8px;
-  scroll-snap-type: x mandatory;
+  align-items: center;
+  gap: 9px;
 }
 
-.review-photo-strip img {
-  width: 105px;
-  height: 78px;
-  flex: 0 0 auto;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,.5);
-  scroll-snap-align: center;
-}
-
-.showcase-dots {
-  position: absolute;
-  bottom: 22px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.showcase-dot {
+.review-dot-new {
   width: 10px;
   height: 10px;
   border: 0;
   border-radius: 50%;
-  background: rgba(255,255,255,.55);
-  cursor: pointer;
+  background: #cdd1d4;
   padding: 0;
-}
-
-.showcase-dot.active {
-  width: 27px;
-  border-radius: 20px;
-  background: #e9bf80;
-}
-
-.showcase-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 1px solid rgba(255,255,255,.5);
-  background: rgba(8,29,45,.4);
-  color: white;
-  width: 38px;
-  height: 46px;
-  border-radius: 9px;
-  font-size: 25px;
   cursor: pointer;
 }
 
-.showcase-prev { left: 12px; }
-.showcase-next { right: 12px; }
+.review-dot-new.active {
+  width: 26px;
+  border-radius: 20px;
+  background: #d4a85f;
+}
+
+.review-arrow-new:focus-visible,
+.review-dot-new:focus-visible {
+  outline: 3px solid #87bdb1;
+  outline-offset: 3px;
+}
+
+/* Mobile layout */
 
 @media (max-width: 700px) {
-  #memories { padding: 55px 5%; }
 
-  .review-showcase {
-    min-height: 500px;
-    padding: 50px 18px 65px;
-    border-radius: 16px;
+  #memories {
+    padding: 55px 5%;
   }
 
-  .review-glass-card {
-    padding: 25px 20px;
+  .review-split {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    border-radius: 15px;
   }
 
-  .showcase-arrow {
-    display: none;
+  .review-picture {
+    min-height: 0;
+    height: 270px;
   }
 
-  .review-photo-strip img {
-    width: 85px;
-    height: 68px;
+  .review-text-panel {
+    padding: 32px 25px 38px;
+    min-height: 270px;
+  }
+
+  .review-quote-new {
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .review-navigation {
+    margin-top: 20px;
+  }
+
+  .review-arrow-new {
+    width: 36px;
+    height: 36px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .review-scenery {
+  .review-split,
+  .review-picture img {
     transition: none;
   }
 }
-/* FULL-WIDTH CINEMATIC REVIEWS — DESKTOP */
-
-#memories {
-  padding: 65px 0 0;
-  background: #faf7f2;
-}
-
-#memories > .section-heading {
-  padding: 0 6%;
-  margin-bottom: 45px;
-}
-
-.review-showcase {
-  width: 100%;
-  max-width: none;
-  min-height: 90vh;
-  border-radius: 0;
-  padding: 90px 7%;
-}
-
-.review-scenery {
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-.review-glass-card {
-  max-width: 760px;
-  padding: 40px 48px;
-  background: rgba(8, 29, 45, 0.48);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.3);
-}
-
-.review-showcase::before {
-  background: rgba(5,27,43,0.38);
-}
-
-/* KEEP THE MOBILE DESIGN COMFORTABLE */
-
-@media (max-width: 700px) {
-  #memories {
-    padding: 50px 0 0;
-  }
-
-  #memories > .section-heading {
-    padding: 0 6%;
-    margin-bottom: 30px;
-  }
-
-  .review-showcase {
-    min-height: 70vh;
-    padding: 65px 18px 75px;
-    border-radius: 0;
-  }
-
-  .review-scenery {
-    background-attachment: scroll;
-    background-position: center;
-  }
-
-  .review-glass-card {
-    padding: 26px 20px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .review-scenery {
-    background-attachment: scroll;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .review-scenery {
-    background-attachment: scroll;
-  }
-}
-
-/* SPACING BETWEEN REVIEWS AND ABOUT US */
-
-#memories {
-  padding-bottom: 65px;
-  background: #faf7f2;
-}
-
-.review-showcase {
-  min-height: 85vh;
-  padding: 100px 8% 110px;
-}
-
-.review-glass-card {
-  margin: 20px auto 35px;
-  max-width: 760px;
-}
-
-.showcase-dots {
-  bottom: 35px;
-}
-
-@media (max-width: 700px) {
-  #memories {
-    padding-bottom: 35px;
-  }
-
-  .review-showcase {
-    min-height: 65vh;
-    padding: 70px 20px 85px;
-  }
-
-  .review-glass-card {
-    margin: 10px auto 25px;
-  }
-
-  .showcase-dots {
-    bottom: 22px;
-  }
-}
-
 </style>
-  
+
 <script>
 (async function () {
+
   const section = document.getElementById('memories');
   if (!section) return;
 
@@ -1503,172 +1408,252 @@ loadAbout();
   }`;
 
   try {
-    const reviews = await sanityQuery(query);
 
-    if (!reviews || !reviews.length) return;
+    const result = await sanityQuery(query);
 
-    const showcase = document.createElement('div');
-    showcase.className = 'review-showcase';
-    showcase.setAttribute('aria-label', 'Customer reviews');
+    const reviews = (result || []).filter(item =>
+      typeof item.review === 'string' &&
+      item.review.trim() &&
+      typeof item.customerName === 'string' &&
+      item.customerName.trim()
+    );
 
-    const scenery = document.createElement('div');
-    scenery.className = 'review-scenery';
+    if (!reviews.length) return;
 
-    const glass = document.createElement('div');
-    glass.className = 'review-glass-card';
+    /* Create split-screen card */
+
+    const carousel = document.createElement('div');
+    carousel.className = 'review-split';
+    carousel.setAttribute('aria-label', 'Traveller testimonials');
+
+    const picture = document.createElement('div');
+    picture.className = 'review-picture';
+
+    const image = document.createElement('img');
+    image.alt = 'Captured travel moment';
+    image.loading = 'lazy';
+
+    picture.appendChild(image);
+
+    const textPanel = document.createElement('div');
+    textPanel.className = 'review-text-panel';
+
+    const label = document.createElement('div');
+    label.className = 'review-label';
+    label.textContent = 'Traveller Review';
 
     const stars = document.createElement('div');
-    stars.className = 'review-showcase-stars';
+    stars.className = 'review-stars-new';
 
     const quote = document.createElement('p');
-    quote.className = 'review-showcase-quote';
+    quote.className = 'review-quote-new';
 
-    const name = document.createElement('h3');
+    const customer = document.createElement('h3');
+    customer.className = 'review-customer-new';
 
     const destination = document.createElement('p');
-    destination.className = 'review-showcase-destination';
+    destination.className = 'review-destination-new';
 
-    const photos = document.createElement('div');
-    photos.className = 'review-photo-strip';
+    textPanel.append(
+      label,
+      stars,
+      quote,
+      customer,
+      destination
+    );
 
-    glass.append(stars, quote, name, destination, photos);
+    carousel.append(picture, textPanel);
 
-    const dots = document.createElement('div');
-    dots.className = 'showcase-dots';
+    /* Create navigation */
 
-    const prev = document.createElement('button');
-    prev.className = 'showcase-arrow showcase-prev';
-    prev.type = 'button';
-    prev.textContent = '‹';
-    prev.setAttribute('aria-label', 'Previous review');
+    const navigation = document.createElement('div');
+    navigation.className = 'review-navigation';
+
+    const previous = document.createElement('button');
+    previous.type = 'button';
+    previous.className = 'review-arrow-new';
+    previous.textContent = '‹';
+    previous.setAttribute('aria-label', 'Previous review');
 
     const next = document.createElement('button');
-    next.className = 'showcase-arrow showcase-next';
     next.type = 'button';
+    next.className = 'review-arrow-new';
     next.textContent = '›';
     next.setAttribute('aria-label', 'Next review');
 
-    showcase.append(scenery, glass, prev, next, dots);
-    section.appendChild(showcase);
+    const dots = document.createElement('div');
+    dots.className = 'review-dots-new';
+
+    navigation.append(previous, dots, next);
+
+    section.append(carousel, navigation);
 
     let active = 0;
-    let timer;
+    let timer = null;
+    let touchStart = null;
 
-    const reducedMotion =
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
     function showReview(index) {
+
       active = (index + reviews.length) % reviews.length;
 
       const review = reviews[active];
 
-      quote.textContent = '“' + cleanText(review.review) + '”';
-      name.textContent = review.customerName;
-      destination.textContent = review.destination || '';
-
-      stars.textContent =
-        Number.isInteger(review.rating) &&
-        review.rating >= 1 && review.rating <= 5
-          ? '★'.repeat(review.rating) +
-            '☆'.repeat(5 - review.rating)
-          : '';
-
-      const background = review.cover ||
+      const photo = review.cover ||
         (review.photos || []).find(Boolean);
 
-      scenery.style.backgroundImage = background
-        ? `url("${background}")`
-        : 'none';
+      if (photo) {
+        image.src = photo;
+        image.alt = review.destination
+          ? 'Captured moment in ' + review.destination
+          : 'Captured travel moment';
+        image.hidden = false;
+      } else {
+        image.removeAttribute('src');
+        image.hidden = true;
+      }
 
-      photos.replaceChildren();
+      quote.textContent =
+        '“' + cleanText(review.review) + '”';
 
-      (review.photos || [])
-        .filter(Boolean)
-        .forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = review.destination || 'Travel photograph';
-          img.loading = 'lazy';
-          photos.appendChild(img);
-        });
+      customer.textContent = review.customerName;
+
+      destination.textContent =
+        review.destination || '';
+
+      if (
+        Number.isInteger(review.rating) &&
+        review.rating >= 1 &&
+        review.rating <= 5
+      ) {
+        stars.textContent =
+          '★'.repeat(review.rating) +
+          '☆'.repeat(5 - review.rating);
+        stars.setAttribute(
+          'aria-label',
+          review.rating + ' out of 5 stars'
+        );
+      } else {
+        stars.textContent = '';
+        stars.removeAttribute('aria-label');
+      }
 
       [...dots.children].forEach((dot, i) => {
-        dot.classList.toggle('active', i === active);
-        dot.setAttribute('aria-current',
-          i === active ? 'true' : 'false');
+        const selected = i === active;
+        dot.classList.toggle('active', selected);
+        dot.setAttribute('aria-pressed', String(selected));
       });
     }
 
     function stop() {
-      clearInterval(timer);
-      timer = undefined;
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
     }
 
     function start() {
       stop();
 
-      if (reviews.length < 2 || reducedMotion ||
-          document.hidden ||
-          showcase.matches(':hover') ||
-          showcase.contains(document.activeElement)) return;
+      if (
+        reviews.length < 2 ||
+        reducedMotion ||
+        document.hidden ||
+        carousel.matches(':hover') ||
+        navigation.matches(':hover') ||
+        carousel.contains(document.activeElement) ||
+        navigation.contains(document.activeElement)
+      ) return;
 
       timer = setInterval(() => {
         showReview(active + 1);
       }, 5500);
     }
 
-    function moveTo(index) {
+    function move(index) {
       showReview(index);
       start();
     }
 
     reviews.forEach((review, i) => {
+
       const dot = document.createElement('button');
       dot.type = 'button';
-      dot.className = 'showcase-dot';
-      dot.setAttribute('aria-label', 'Show review ' + (i + 1));
+      dot.className = 'review-dot-new';
 
-      dot.addEventListener('click', () => moveTo(i));
+      dot.setAttribute(
+        'aria-label',
+        'Show review ' + (i + 1)
+      );
+
+      dot.addEventListener('click', () => move(i));
+
       dots.appendChild(dot);
     });
 
-    prev.addEventListener('click', () => moveTo(active - 1));
-    next.addEventListener('click', () => moveTo(active + 1));
+    previous.addEventListener('click', () => {
+      move(active - 1);
+    });
 
-    let touchStart = 0;
+    next.addEventListener('click', () => {
+      move(active + 1);
+    });
 
-    showcase.addEventListener('touchstart', e => {
-      touchStart = e.changedTouches[0].screenX;
+    /* Swipe support on mobile */
+
+    carousel.addEventListener('touchstart', event => {
+      touchStart = event.changedTouches[0].screenX;
       stop();
-    }, {passive:true});
+    }, {passive: true});
 
-    showcase.addEventListener('touchend', e => {
+    carousel.addEventListener('touchend', event => {
+
+      if (touchStart === null) return;
+
       const difference =
-        e.changedTouches[0].screenX - touchStart;
+        event.changedTouches[0].screenX - touchStart;
 
-      if (Math.abs(difference) > 45) {
+      if (Math.abs(difference) > 50) {
         showReview(active + (difference < 0 ? 1 : -1));
       }
 
+      touchStart = null;
       start();
-    }, {passive:true});
 
-    showcase.addEventListener('mouseenter', stop);
-    showcase.addEventListener('mouseleave', start);
-    showcase.addEventListener('focusin', stop);
-    showcase.addEventListener('focusout', () => {
+    }, {passive: true});
+
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+
+    navigation.addEventListener('mouseenter', stop);
+    navigation.addEventListener('mouseleave', start);
+
+    carousel.addEventListener('focusin', stop);
+    navigation.addEventListener('focusin', stop);
+
+    carousel.addEventListener('focusout', () => {
+      setTimeout(start, 0);
+    });
+
+    navigation.addEventListener('focusout', () => {
       setTimeout(start, 0);
     });
 
     document.addEventListener('visibilitychange', start);
 
+    if (reviews.length < 2) {
+      navigation.hidden = true;
+    }
+
     showReview(0);
     start();
 
   } catch (error) {
-    console.error('Review showcase:', error);
+    console.error('Traveller review carousel:', error);
   }
+
 })();
 </script>
-</body>
-</html>
