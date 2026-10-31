@@ -21,4 +21,106 @@
 <section id="contact" class="contact"><div class="eyebrow">Start planning</div><h2>Let's Plan Your Next Getaway</h2><p>Have a destination in mind? Send us your preferred travel dates, number of travelers, and destination. We'll be happy to discuss your travel inquiry.</p><a class="btn" href="mailto:YOUR_EMAIL_HERE?subject=Travel%20Inquiry">Email Us to Inquire</a><p style="margin-top:18px;font-size:.85rem">Contact details will be updated before launch.</p></section>
 </main><footer>© <span id="year">2026</span> Travel and Tours by Anne. All rights reserved.</footer>
 <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  
+<script>
+(async function () {
+  const projectId = 'eb0bffrp';
+  const dataset = 'production';
+
+  const query = `*[
+    _type == "tourPackage" &&
+    status in ["available", "coming-soon"]
+  ] | order(_createdAt desc) {
+    title,
+    destination,
+    currency,
+    price,
+    travelDates,
+    status,
+    "photo": coverImage.asset->url
+  }`;
+
+  const url =
+    `https://${projectId}.apicdn.sanity.io/v2025-02-19` +
+    `/data/query/${dataset}?perspective=published&query=` +
+    encodeURIComponent(query);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Cannot load tours');
+
+    const data = await response.json();
+    const tours = data.result || [];
+
+    // Don't display a tour section until something is published.
+    if (!tours.length) return;
+
+    const section = document.createElement('section');
+    section.id = 'tours';
+
+    const heading = document.createElement('h2');
+    heading.className = 'center';
+    heading.textContent = 'Explore Our Tours';
+    section.appendChild(heading);
+
+    const cards = document.createElement('div');
+    cards.className = 'cards';
+
+    tours.forEach(tour => {
+      const card = document.createElement('article');
+      card.className = 'card';
+
+      if (tour.photo) {
+        const img = document.createElement('img');
+        img.src = tour.photo;
+        img.alt = tour.title || 'Travel package';
+        img.loading = 'lazy';
+        card.appendChild(img);
+      }
+
+      const body = document.createElement('div');
+      body.className = 'card-body';
+
+      const title = document.createElement('h3');
+      title.textContent = tour.title || 'Travel Package';
+      body.appendChild(title);
+
+      const destination = document.createElement('p');
+      destination.textContent = tour.destination || '';
+      body.appendChild(destination);
+
+      if (typeof tour.price === 'number') {
+        const price = document.createElement('p');
+        price.textContent =
+          `From ${tour.currency === 'USD' ? 'US$' : '₱'}` +
+          `${tour.price.toLocaleString()} per person`;
+        body.appendChild(price);
+      }
+
+      if (tour.travelDates) {
+        const dates = document.createElement('p');
+        dates.textContent = tour.travelDates;
+        body.appendChild(dates);
+      }
+
+      const link = document.createElement('a');
+      link.className = 'btn';
+      link.href = '#contact';
+      link.textContent = 'Inquire About This Tour';
+      body.appendChild(link);
+
+      card.appendChild(body);
+      cards.appendChild(card);
+    });
+
+    section.appendChild(cards);
+
+    const about = document.getElementById('about');
+    if (about) about.before(section);
+
+  } catch (error) {
+    console.error('Sanity tour connection:', error);
+  }
+})();
+</script>
 </body></html>
