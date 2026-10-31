@@ -122,5 +122,209 @@
     console.error('Sanity tour connection:', error);
   }
 })();
+
+<script>
+(async function () {
+  const projectId = 'eb0bffrp';
+  const dataset = 'production';
+
+  const query = `*[
+    _type == "tourPackage" &&
+    status in ["available", "coming-soon"]
+  ] | order(_createdAt desc) {
+    title,
+    destination,
+    currency,
+    price,
+    travelDates,
+    description,
+    itinerary,
+    inclusions,
+    exclusions,
+    departures[]{startDate, endDate, price},
+    status,
+    "photo": coverImage.asset->url,
+    "galleryPhotos": gallery[].asset->url
+  }`;
+
+  const url =
+    `https://${projectId}.apicdn.sanity.io/v2025-02-19` +
+    `/data/query/${dataset}?perspective=published&query=` +
+    encodeURIComponent(query);
+
+  const styles = document.createElement('style');
+  styles.textContent = `
+    #tours { background: #f8f6f0; }
+    #tours .cards { align-items: start; }
+    .tour-details { margin-top: 15px; }
+    .tour-details summary {
+      cursor: pointer;
+      background: #d4a85f;
+      color: #102c43;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .tour-details[open] summary { margin-bottom: 20px; }
+    .tour-info { margin: 15px 0 22px; }
+    .tour-info h4 { margin: 0 0 8px; }
+    .tour-info p { white-space: pre-line; }
+    .tour-info ul { padding-left: 20px; }
+    .tour-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .tour-gallery img {
+      height: 140px;
+      border-radius: 8px;
+    }
+    .tour-price { font-weight: bold; margin-top: 10px !important; }
+  `;
+  document.head.appendChild(styles);
+
+  function addText(parent, tag, value, className) {
+    const element = document.createElement(tag);
+    element.textContent = value;
+    if (className) element.className = className;
+    parent.appendChild(element);
+    return element;
+  }
+
+  function cleanText(value) {
+    return String(value || '')
+      .replace(/^#{1,6}\s*/gm, '')
+      .replace(/\*\*/g, '')
+      .replace(/^\*(?!\s)/gm, '');
+  }
+
+  function money(value, currency) {
+    const symbol = currency === 'USD' ? 'US$' :
+                   currency === 'PHP' ? '₱' : '';
+    return symbol + Number(value).toLocaleString('en-US');
+  }
+
+  function addInformation(parent, heading, content) {
+    if (!content) return;
+
+    const section = document.createElement('div');
+    section.className = 'tour-info';
+    addText(section, 'h4', heading);
+
+    if (Array.isArray(content)) {
+      const list = document.createElement('ul');
+      content.forEach(item => {
+        addText(list, 'li', cleanText(item));
+      });
+      section.appendChild(list);
+    } else {
+      addText(section, 'p', cleanText(content));
+    }
+
+    parent.appendChild(section);
+  }
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Unable to load tours');
+
+    const data = await response.json();
+    const tours = data.result || [];
+
+    if (!tours.length) return;
+
+    const section = document.createElement('section');
+    section.id = 'tours';
+
+    addText(section, 'h2', 'Explore Our Tours', 'center');
+
+    const cards = document.createElement('div');
+    cards.className = 'cards';
+
+    tours.forEach(tour => {
+      const card = document.createElement('article');
+      card.className = 'card';
+
+      if (tour.photo) {
+        const img = document.createElement('img');
+        img.src = tour.photo;
+        img.alt = tour.title || 'Tour photograph';
+        img.loading = 'lazy';
+        card.appendChild(img);
+      }
+
+      const body = document.createElement('div');
+      body.className = 'card-body';
+
+      addText(body, 'h3', tour.title || 'Travel Package');
+      addText(body, 'p', tour.destination || '');
+
+      if (typeof tour.price === 'number' && tour.currency) {
+        addText(
+          body, 'p',
+          'From ' + money(tour.price, tour.currency) + ' per person',
+          'tour-price'
+        );
+      }
+
+      addInformation(body, 'Travel Dates', tour.travelDates);
+
+      const details = document.createElement('details');
+      details.className = 'tour-details';
+
+      addText(details, 'summary', 'View Tour Details');
+
+      addInformation(details, 'Package Description', tour.description);
+      addInformation(details, 'Day-by-Day Itinerary', tour.itinerary);
+      addInformation(details, 'Inclusions', tour.inclusions);
+      addInformation(details, 'Exclusions', tour.exclusions);
+
+      if (tour.departures?.length) {
+        const lines = tour.departures.map(d => {
+          const amount = typeof d.price === 'number'
+            ? money(d.price, tour.currency)
+            : 'Price on request';
+
+          return `${d.startDate} to ${d.endDate}: ${amount} per person`;
+        });
+
+        addInformation(details, 'Special Departure Prices', lines);
+      }
+
+      if (tour.galleryPhotos?.length) {
+        const gallery = document.createElement('div');
+        gallery.className = 'tour-gallery';
+
+        tour.galleryPhotos.filter(Boolean).forEach(photo => {
+          const img = document.createElement('img');
+          img.src = photo;
+          img.alt = tour.title || 'Tour gallery';
+          img.loading = 'lazy';
+          gallery.appendChild(img);
+        });
+
+        details.appendChild(gallery);
+      }
+
+      const inquiry = document.createElement('a');
+      inquiry.className = 'btn';
+      inquiry.href = '#contact';
+      inquiry.textContent = 'Inquire About This Tour';
+      details.appendChild(inquiry);
+
+      body.appendChild(details);
+      card.appendChild(body);
+      cards.appendChild(card);
+    });
+
+    section.appendChild(cards);
+
+    const about = document.getElementById('about');
+    if (about) about.before(section);
+
+  } catch (error) {
+    console.error('Sanity connection error:', error);
+  }
+})();
 </script>
-</body></html>
