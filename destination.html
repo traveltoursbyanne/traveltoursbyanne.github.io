@@ -36,6 +36,68 @@ document.getElementById('description').textContent=data.description;
 const cards=document.getElementById('cards');
 for(const [title,description] of data.highlights){const article=document.createElement('article');article.className='card';const h=document.createElement('h3');h.textContent=title;const p=document.createElement('p');p.textContent=description;article.append(h,p);cards.appendChild(article)}
 if(selected!=='more')document.getElementById('inquire').href='index.html#private-tours';
+
+/* Show published Sanity destinations on More Adventures only */
+if (selected === 'more') {
+  const projectId = 'eb0bffrp';
+  const dataset = 'production';
+
+  const query = `*[_type == "destination"] | order(name asc) {
+    name,
+    description,
+    "photoUrl": photo.asset->url
+  }`;
+
+  const url =
+    `https://${projectId}.api.sanity.io/v2025-02-19/data/query/${dataset}` +
+    `?perspective=published&query=${encodeURIComponent(query)}`;
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error('Could not load destinations');
+      return response.json();
+    })
+    .then(data => {
+      const destinationsFromSanity = data.result || [];
+
+      if (!destinationsFromSanity.length) return;
+
+      const cards = document.getElementById('cards');
+      cards.innerHTML = '';
+
+      for (const destination of destinationsFromSanity) {
+        const article = document.createElement('article');
+        article.className = 'card';
+
+        if (destination.photoUrl) {
+          const img = document.createElement('img');
+          img.src = destination.photoUrl;
+          img.alt = destination.name || 'Travel destination';
+          img.loading = 'lazy';
+          img.style.width = '100%';
+          img.style.height = '200px';
+          img.style.objectFit = 'cover';
+          img.style.borderRadius = '10px';
+          article.appendChild(img);
+        }
+
+        const heading = document.createElement('h3');
+        heading.textContent = destination.name || 'Destination';
+
+        const description = document.createElement('p');
+        description.textContent = destination.description || '';
+
+        article.append(heading, description);
+        cards.appendChild(article);
+      }
+
+      document.getElementById('section-heading').textContent =
+        'Explore More Destinations';
+    })
+    .catch(error => {
+      console.error('Sanity destinations could not load:', error);
+    });
+}
 </script>
 </body>
 </html>
